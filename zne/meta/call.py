@@ -10,7 +10,7 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-"""ZNE functionality for :method:`qiskit.primitives.BaseEstimator.__call__` method."""
+"""ZNE functionality for :method:`qiskit.primitives.BaseEstimatorV2.__call__` method."""
 from __future__ import annotations
 
 from collections.abc import Callable, Sequence
@@ -20,7 +20,7 @@ from numpy import ndarray
 from qiskit.circuit import QuantumCircuit
 from qiskit.primitives import EstimatorResult
 from qiskit.quantum_info.operators import SparsePauliOp
-from qiskit.utils.deprecation import deprecate_arguments
+from qiskit.utils.deprecation import deprecate_arg
 
 Sequence.register(ndarray)
 
@@ -29,13 +29,13 @@ Sequence.register(ndarray)
 ## DECORATOR
 ################################################################################
 def zne_call(call: Callable) -> Callable:
-    """Add ZNE functionality to :method:`qiskit.primitives.BaseEstimator.__call__`."""
+    """Add ZNE functionality to :method:`qiskit.primitives.BaseEstimatorV2.__call__`."""
 
     if not callable(call):
         raise TypeError("Invalid `call` argument, expected callable.")
 
     @wraps(call)
-    @deprecate_arguments({"circuit_indices": "circuits", "observable_indices": "observables"})
+    @deprecate_arg({"circuit_indices": "circuits", "observable_indices": "observables"})
     def _zne_call(
         self,
         circuits: Sequence[int | QuantumCircuit],
@@ -44,7 +44,7 @@ def zne_call(call: Callable) -> Callable:
         **run_options,
     ) -> EstimatorResult:
         raise TypeError(
-            "The BaseEstimator.__call__ method is deprecated as of Qiskit Terra 0.22.0. "
+            "The BaseEstimatorV2.__call__ method is deprecated as of Qiskit Terra 0.22.0. "
             "Use the 'run' method instead.",
         )
 

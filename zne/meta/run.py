@@ -10,7 +10,7 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-"""ZNE functionality for :method:`qiskit.primitives.BaseEstimator._run` method."""
+"""ZNE functionality for :method:`qiskit.primitives.BaseEstimatorV2._run` method."""
 
 from __future__ import annotations
 
@@ -26,7 +26,7 @@ from .job import ZNEJob
 
 
 def zne_run(run: Callable) -> Callable:
-    """Add ZNE functionality to :method:`qiskit.primitives.BaseEstimator._run`."""
+    """Add ZNE functionality to :method:`qiskit.primitives.BaseEstimatorV2._run`."""
 
     if not callable(run):
         raise TypeError("Invalid `run` argument, expected callable.")

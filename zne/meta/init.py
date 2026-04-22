@@ -10,7 +10,7 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-"""ZNE functionality for :method:`qiskit.primitives.BaseEstimator.__init__` method."""
+"""ZNE functionality for :method:`qiskit.primitives.BaseEstimatorV2.__init__` method."""
 from __future__ import annotations
 
 from collections.abc import Callable, Iterable, Sequence
@@ -26,7 +26,7 @@ Sequence.register(ndarray)
 
 
 def zne_init(init: Callable) -> Callable:
-    """Add ZNE functionality to :method:`qiskit.primitives.BaseEstimator.__init__`."""
+    """Add ZNE functionality to :method:`qiskit.primitives.BaseEstimatorV2.__init__`."""
 
     if not callable(init):
         raise TypeError("Invalid `init` argument, expected callable.")
@@ -43,7 +43,7 @@ def zne_init(init: Callable) -> Callable:
     ) -> None:
         if circuits is not None or observables is not None or parameters is not None:
             raise TypeError(
-                "The BaseEstimator `circuits`, `observables`, `parameters` kwarg are "
+                "The BaseEstimatorV2 `circuits`, `observables`, `parameters` kwarg are "
                 "deprecated as of Qiskit Terra 0.22.0. Use the 'run' method instead.",
             )
         self.zne_strategy = zne_strategy

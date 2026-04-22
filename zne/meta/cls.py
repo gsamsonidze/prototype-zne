@@ -13,12 +13,12 @@
 """ZNE meta programming capabilities.
 
 Enables injecting error mitigation functionality to classes implementing the
-:class:`qiskit.primitives.BaseEstimator` interface.
+:class:`qiskit.primitives.BaseEstimatorV2` interface.
 """
 
 from __future__ import annotations
 
-from qiskit.primitives import BaseEstimator
+from qiskit.primitives import BaseEstimatorV2
 
 from zne.meta.call import zne_call
 from zne.meta.init import zne_init
@@ -30,13 +30,13 @@ def zne(cls: type) -> type:  # TODO: integration tests
     """Add ZNE functionality to input class.
 
     Args:
-        cls: class implementing the :class:`qiskit.primitives.BaseEstimator` interface.
+        cls: class implementing the :class:`qiskit.primitives.BaseEstimatorV2` interface.
 
     Returns:
         A subclass of the input class extended with ZNE functionality.
     """
-    if not isinstance(cls, type) or not issubclass(cls, BaseEstimator):
-        raise TypeError("Invalid class, does not implement the BaseEstimator interface.")
+    if not isinstance(cls, type) or not issubclass(cls, BaseEstimatorV2):
+        raise TypeError("Invalid class, does not implement the BaseEstimatorV2 interface.")
     namespace = {
         "__init__": zne_init(cls.__init__),  # type: ignore  # TODO: update docstring
         "__call__": zne_call(cls.__call__),  # TODO: deprecate

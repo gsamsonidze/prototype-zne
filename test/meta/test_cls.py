@@ -14,7 +14,7 @@
 from unittest.mock import Mock, patch
 
 from pytest import fixture, mark, raises
-from qiskit.primitives import BaseEstimator
+from qiskit.primitives import BaseEstimatorV2
 
 from zne import ZNEStrategy
 from zne.meta import zne
@@ -29,7 +29,7 @@ class TestZNE:
     ################################################################################
     @fixture(scope="function")
     def Estimator(self):
-        class Estimator(BaseEstimator):
+        class Estimator(BaseEstimatorV2):
             def _call(self):
                 pass
 

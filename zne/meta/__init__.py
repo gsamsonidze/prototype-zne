@@ -13,7 +13,7 @@
 """ZNE meta programming capabilities.
 
 Enables injecting error mitigation functionility to classes implementing the
-:class:`qiskit.primitives.BaseEstimator` interface.
+:class:`qiskit.primitives.BaseEstimatorV2` interface.
 """
 
 from zne.meta.cls import zne
